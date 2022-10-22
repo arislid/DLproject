@@ -31,7 +31,8 @@ class WineDataset(Dataset):
         self.n_samples = xy.shape[0]        
         
     def __getitem__(self, index):
-        # dataset[0]
+        # dataset[index] which returns a dataset sample
+        # e.g. dataset[0] = (x[0], y[0])
         return self.x[index], self.y[index]
     
     def __len__(self):
@@ -71,6 +72,7 @@ def train(dataset, batch_size):
 if __name__ == '__main__':
     if 'wine.csv' not in os.listdir():
         download_data()
+    
     dataset = WineDataset()
     # first_data = dataset[0]
     # features, labels = first_data
@@ -82,8 +84,10 @@ if __name__ == '__main__':
     data = dataiter.next() # next batch
     print(len(dataloader)) # 178/4 = 45 (dataset size / batch size)
     print(len(dataset)) # 178
-    # features, labels = data
-    # print(features, labels)
+    features, labels = data
+    print(features, labels)
+    print(features.shape, labels.shape)
+    
     
     train(dataset, batch_size=4)
     

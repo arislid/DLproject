@@ -1,2 +1,6 @@
 *.drawio
 *.csv
+
+# Ignore datasets
+*.csv
+data/
